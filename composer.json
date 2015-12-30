@@ -1,5 +1,5 @@
 {
-    "name"       : "centraldesktop/protobuf-php",
+    "name"       : "geneanet/protobuf-php",
     "description": "PHP implementation of Google's Protocol Buffers",
     "keywords"   : ["protobuf", "protocol buffer", "serializing"],
     "homepage"   : "https://github.com/drslump/Protobuf-PHP",
@@ -16,7 +16,7 @@
     "require"    : {
         "php"                : ">=5.5.0",
         "ext-mbstring"       : "*",
-        "phpoption/phpoption": "1.4.*",
+        "phpoption/phpoption": "1.5.*",
         "symfony/console"    : "2.*"
     },
     "require-dev": {
