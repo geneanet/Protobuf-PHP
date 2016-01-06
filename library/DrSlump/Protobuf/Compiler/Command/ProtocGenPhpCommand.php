@@ -62,6 +62,12 @@ class ProtocGenPhpCommand extends Command
             'generate @@protoc insertion points'
         )
         ->addOption(
+            'no-timestamp',
+            null,
+            InputOption::VALUE_NONE,
+            'do not generate a timestamp comment'
+        )
+        ->addOption(
             'define',
             'D',
             InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
@@ -182,6 +188,9 @@ class ProtocGenPhpCommand extends Command
         }
         if ($input->getOption('insertions')) {
             $args['options']['insertions'] = 1;
+        }
+        if ($input->getOption('no-timestamp')) {
+            $args['options']['no-timestamp'] = 1;
         }
 
         $cmd[] = '--php_out=' .
