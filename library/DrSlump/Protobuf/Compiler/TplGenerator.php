@@ -81,21 +81,21 @@ class TplGenerator extends AbstractGenerator
             // In multifile mode we output all the extensions in a file named after
             // the proto file, since it's not trivial or even possible in all cases
             // to include the extensions with the extended message file.
-            $fname = pathinfo($proto->name, PATHINFO_FILENAME) . '-extensions';
+            $fname = ucfirst($this->camelize(pathinfo($proto->name, PATHINFO_FILENAME) . '_extensions'));
 
             $src = array();
             foreach ($this->extensions as $extendee=>$fields) {
                 $src[] = $this->template('extension', $fields, $extendee, self::STYLE_NB_SPACES);
             }
 
-            $result[$fname] = implode("\n", $src);
+            $result[$ns.'.'.$fname] = implode("\n", $src);
         }
 
         // Generate services
         if ($this->option('generic_services') && $proto->hasService()) {
             foreach ($proto->getServiceList() as $service) {
                 $src = $this->template('service', $service, $ns, self::STYLE_NB_SPACES);
-                $result[$namespace . '.' . $service->getName()] = $src;
+                $result[$ns . '.' . $service->getName()] = $src;
             }
         }
 
