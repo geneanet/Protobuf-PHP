@@ -7,7 +7,6 @@
 */
 
 use DrSlump\Protobuf\Protobuf;
-use RuntimeException;
 
 $spaces = str_repeat(' ', $nbSpaces);
 echo 'use DrSlump\Protobuf\Field;'.PHP_EOL;
@@ -27,7 +26,7 @@ foreach ($data as $f) {
     if ($f->hasTypeName()) {
         $ref = $f->type_name;
         if (substr($ref, 0, 1) !== '.') {
-            throw new RuntimeException("Only fully qualified names are supported but found '$ref' at $ns");
+            throw new \RuntimeException("Only fully qualified names are supported but found '$ref' at $ns");
         }
         echo $spaces.'$f->reference = \''.$this->ns($ref).'\';'.PHP_EOL;
     }
